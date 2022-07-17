@@ -45,6 +45,7 @@ def equity_curve_for_OKEx_USDT_future_next_open(df, slippage=1 / 1000, c_rate=5 
 
     df.loc[open_pos_condition, 'buy'] = df['next_open']
     df.loc[close_pos_condition, 'sell'] = df['next_open']
+
     # =====对每次交易进行分组
     df.loc[open_pos_condition, 'start_time'] = df['candle_begin_time']
     df['start_time'].fillna(method='ffill', inplace=True)

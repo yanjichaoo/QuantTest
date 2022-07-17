@@ -55,7 +55,7 @@ period_df.reset_index(inplace=True)
 df = period_df[['candle_begin_time', 'open', 'high', 'low', 'close', 'volume']]
 df = df[df['candle_begin_time'] >= pd.to_datetime('2017-08-17')]
 # df = df[df['candle_begin_time'] <= pd.to_datetime('2021-11-10')]
-df = df[df['candle_begin_time'] <= pd.to_datetime('2017-09-01')]
+df = df[df['candle_begin_time'] <= pd.to_datetime('2017-12-10')]
 
 df.reset_index(inplace=True, drop=True)
 
@@ -84,9 +84,13 @@ result, monthly_return = strategy_evaluate(df, trade)
 
 print(result)
 # print(monthly_return)
-
+print(df)
 plt.plot(df['median'], "g")
 plt.plot(df['upper'], "r")
 plt.plot(df['lower'], "b")
-plt.plot(df['op'], 'm')
+plt.plot(df['close'], 'c')
+df['buy'].fillna(value=0, inplace=True)
+df['sell'].fillna(value=0, inplace=True)
+plt.plot(df['buy'], 'm')
+plt.plot(df['sell'], 'm')
 plt.show()
