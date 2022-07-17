@@ -8,16 +8,6 @@ pd.set_option('expand_frame_repr', False)  # 当列太多时不换行
 
 
 def save_spot_candle_data_from_exchange(exchange, symbol, time_interval, start_time, end_time, path):
-    """
-    将某个交易所在指定日期指定交易对的K线数据，保存到指定文件夹
-    :param exchange: ccxt交易所
-    :param symbol: 指定交易对，例如'BTC/USDT'
-    :param time_interval: K线的时间周期
-    :param start_time: 指定日期，格式为'2020-03-16 00:00:00'
-    :param end_time: 指定日期，格式为'2020-03-16 00:00:00'
-    :param path: 文件保存根目录
-    :return:
-    """
 
     # ===开始抓取数据
     df_list = []
