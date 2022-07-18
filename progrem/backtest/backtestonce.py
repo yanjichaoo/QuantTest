@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import timedelta
-from Signals import *
+from SignalsOptimize import *
 from Position import *
 from Evaluate import *
 import matplotlib.pyplot as plt
@@ -13,12 +13,13 @@ pd.set_option('display.max_rows', 5000)  # 最多显示数据的行数
 
 # =====手工设定策略参数
 symbol = 'ETH-USDT_5m'
-para = [750, 3.0]
+# para = [750, 3.0]
+para = [540, 2.5]
 
 face_value = 0.01  # btc是0.01，不同的币种要进行不同的替换
 c_rate = 5 / 10000  # 手续费，commission fees，默认为万分之5。不同市场手续费的收取方法不同，对结果有影响。比如和股票就不一样。
 slippage = 1 / 1000  # 滑点 ，可以用百分比，也可以用固定值。建议币圈用百分比，股票用固定值
-leverage_rate = 2
+leverage_rate = 3
 min_margin_ratio = 1 / 100  # 最低保证金率，低于就会爆仓
 rule_type = '15T'
 drop_days = 10  # 币种刚刚上线10天内不交易
@@ -44,8 +45,9 @@ period_df = period_df[period_df['volume'] > 0]  # 去除成交量为0的交易�
 period_df.reset_index(inplace=True)
 df = period_df[['candle_begin_time', 'open', 'high', 'low', 'close', 'volume']]
 df = df[df['candle_begin_time'] >= pd.to_datetime('2017-08-17')]
-# df = df[df['candle_begin_time'] <= pd.to_datetime('2021-11-10')]
-df = df[df['candle_begin_time'] <= pd.to_datetime('2017-12-10')]
+# df = df[df['candle_begin_time'] >= pd.to_datetime('2021-11-11')]
+df = df[df['candle_begin_time'] <= pd.to_datetime('2022-07-05')]
+# df = df[df['candle_begin_time'] <= pd.to_datetime('2017-12-10')]
 
 df.reset_index(inplace=True, drop=True)
 
@@ -74,7 +76,6 @@ result, monthly_return = strategy_evaluate(df, trade)
 
 print(result)
 # print(monthly_return)
-print(df)
 plt.plot(df['median'], "g")
 plt.plot(df['upper'], "r")
 plt.plot(df['lower'], "b")
