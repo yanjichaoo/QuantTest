@@ -6,7 +6,7 @@ from datetime import timedelta
 from multiprocessing.pool import Pool
 from datetime import datetime
 from SignalsOptimize import *
-from Position import *
+from PositionOptimize import *
 from Evaluate import *
 
 pd.set_option('expand_frame_repr', False)  # 当列太多时不换行
