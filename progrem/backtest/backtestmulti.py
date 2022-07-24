@@ -5,8 +5,8 @@ import pandas as pd
 from datetime import timedelta
 from multiprocessing.pool import Pool
 from datetime import datetime
-from SignalsOptimize import *
-from PositionOptimize import *
+from SignalsMagic import *
+from Position import *
 from Evaluate import *
 
 pd.set_option('expand_frame_repr', False)  # 当列太多时不换行
@@ -45,7 +45,7 @@ period_df.reset_index(inplace=True)
 df = period_df[['candle_begin_time', 'open', 'high', 'low', 'close', 'volume']]
 start_time = '2017-08-01'
 # start_time = '2021-11-11'
-end_time = '2022-07-05'
+end_time = '2020-9-15'
 df = df[df['candle_begin_time'] >= pd.to_datetime(start_time)]
 df = df[df['candle_begin_time'] <= pd.to_datetime(end_time)]
 df.reset_index(inplace=True, drop=True)

@@ -14,7 +14,7 @@ pd.set_option('display.max_rows', 5000)  # 最多显示数据的行数
 # =====手工设定策略参数
 symbol = 'ETH-USDT_5m'
 # para = [750, 3.0]
-para = [55, 2.0]
+para = [53]
 
 face_value = 0.01  # btc是0.01，不同的币种要进行不同的替换
 c_rate = 5 / 10000  # 手续费，commission fees，默认为万分之5。不同市场手续费的收取方法不同，对结果有影响。比如和股票就不一样。
@@ -44,9 +44,9 @@ period_df.dropna(subset=['open'], inplace=True)  # 去除一天都没有交易�
 period_df = period_df[period_df['volume'] > 0]  # 去除成交量为0的交易周期
 period_df.reset_index(inplace=True)
 df = period_df[['candle_begin_time', 'open', 'high', 'low', 'close', 'volume']]
-df = df[df['candle_begin_time'] >= pd.to_datetime('2017-08-27')]
-df = df[df['candle_begin_time'] <= pd.to_datetime('2020-10-11')]
-# df = df[df['candle_begin_time'] >= pd.to_datetime('2021-11-11')]
+# df = df[df['candle_begin_time'] >= pd.to_datetime('2017-08-27')]
+# df = df[df['candle_begin_time'] <= pd.to_datetime('2020-9-10')]
+df = df[df['candle_begin_time'] >= pd.to_datetime('2021-11-11')]
 df = df[df['candle_begin_time'] <= pd.to_datetime('2022-07-05')]
 # df = df[df['candle_begin_time'] <= pd.to_datetime('2017-12-10')]
 
